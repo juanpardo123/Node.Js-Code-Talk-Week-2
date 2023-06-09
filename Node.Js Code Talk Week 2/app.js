@@ -11,13 +11,53 @@
 // 
 
 
-// A promise in JavaScript is an object in JavaScript that represents the eventual completion (or failure) of an asynchronous operation and its resulting value. A promise can have a state of Pending,Fulfilled or Rejected
-
+// A promise in JavaScript is an object in JavaScript that represents the eventual completion (or failure) of an asynchronous operation and its resulting value. A promise can have a state of Pending,Fulfilled or Rejected.
+function delay(ms) {
+    return new Promise((resolve, reject) => {
+      setTimeout(resolve, ms);
+    });
+  }
+  
+  console.log("Start");
+  delay(2000)
+    .then(() => {
+      console.log("Two seconds have passed!");
+      return delay(1000);
+    })
+    .then(() => {
+      console.log("Another second has passed!");
+    })
+    .catch((error) => {
+      console.log("An error occurred:", error);
+    });
 
 
 // Coding Problem 2-------------------------------------------------------------------- 
 // What is a callback? What is callback hell? Why does callback hell occur and why should we avoid callback hell?  Please code an example of callback hell to show to the class. Make sure to go into detail as you explain your code to the class.
 
+// A callback function is a function that is passed as an argument to another function and is executed later when a certain event or task is completed. 
+//Callback hell happens when you have multiple nested callback functions within callbacks, making the code difficult to read and maintain
+
+console.log("Start");
+
+setTimeout(() => {
+  console.log("First operation completed");
+
+  setTimeout(() => {
+    console.log("Second operation completed");
+
+    setTimeout(() => {
+      console.log("Third operation completed");
+
+      setTimeout(() => {
+        console.log("All operations completed");
+      }, 1000); // Fourth operation
+
+    }, 2000); // Third operation
+
+  }, 3000); // Second operation
+
+}, 4000); // First operation
 
 
 // Coding Problem 3--------------------------------------------------------------------
